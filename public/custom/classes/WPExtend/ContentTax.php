@@ -21,9 +21,9 @@ namespace WPPlugins\WPExtend;
  */
 
 /** _________________________________________
- * | add_action('init', function () { 		 |
- * |										 |
- * | });									 |
+ * | add_action('init', function () {        |
+ * |                                         |
+ * | });                                     |
  * |_________________________________________|
  */
 
