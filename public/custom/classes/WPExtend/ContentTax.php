@@ -257,6 +257,20 @@ class ContentTax {
 	 * | $obj = new MyClass;                                             |
 	 * |_________________________________________________________________|
 	 */
+	/**
+	 *  _________________________________________________________________
+	 * | class MyClass                                                   |
+	 * | {                                                               |
+	 * |	public $prop1 = "I'm a class property!";                     |
+	 * |    public function __construct() {                              |
+	 * |    	echo 'The class "', __CLASS__, '" was initiated!<br />'; |
+	 * |    }                                                            |
+     * | }                                                               |
+	 * | // Create a new object                                          |
+	 * | $obj = new MyClass;                                             |
+	 * |_________________________________________________________________|
+	 */
+
 
 	public function __construct($taxonomy, $object_type = [], $args = [], $labels = []) {
 		// OOP allows objects to reference themselves using $this. When working within a method,
