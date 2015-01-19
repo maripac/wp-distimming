@@ -183,7 +183,6 @@ namespace WPPlugins\WPExtend;
  */
 
 // LET'S GO!
-// The syntax to create a class
 class ContentTax {
 /** 
  *  ____________________________________________
@@ -248,43 +247,16 @@ class ContentTax {
 	 *  _________________________________________________________________
 	 * | class MyClass                                                   |
 	 * | {                                                               |
-	 * |	public $prop1 = "I'm a class property!";                     |
+	 * |    public $prop1 = "I'm a class property!";                     |
 	 * |    public function __construct() {                              |
-	 * |    	echo 'The class "', __CLASS__, '" was initiated!<br />'; |
+	 * |        echo 'The class "', __CLASS__, '" was initiated!<br />'; | 
 	 * |    }                                                            |
-     * | }                                                               |
-	 * | // Create a new object                                          |
+	 * | }                                                               |
+	 * | // Create a new object                                          | 
 	 * | $obj = new MyClass;                                             |
 	 * |_________________________________________________________________|
-	 */
-	/**
-	 * | class MyClass                                                   |
-	 * | {                                                               |
-	 * | 	public $prop1 = "I'm a class property!";                     |
-	 * |    public $prop1 = "I'm a class property!";                     |
-	 *
-	 *
-	 *
-	 *
-	 *
-	 *
-	 *
-	 *
 	 */
 
-	/**
-	 *  _________________________________________________________________
-	 * | class MyClass                                                   |
-	 * | {                                                               |
-	 * |	public $prop1 = "I'm a class property!";                     |
-	 * |    public function __construct() {                              |
-	 * |    	echo 'The class "', __CLASS__, '" was initiated!<br />'; |
-	 * |    }                                                            |
-     * | }                                                               |
-	 * | // Create a new object                                          |
-	 * | $obj = new MyClass;                                             |
-	 * |_________________________________________________________________|
-	 */
 
 
 	public function __construct($taxonomy, $object_type = [], $args = [], $labels = []) {
