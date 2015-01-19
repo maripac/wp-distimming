@@ -212,10 +212,10 @@ class ContentTax {
 	 * | class MyClass                                       |
 	 * | {                                                   |
 	 * |	public $prop1 = "I'm a class property!";         |
-	 * | }                                                   |                                  |
+	 * | }                                                   |
 	 * |_____________________________________________________|
 	 */
-	
+
 	/**
 	 * Creates a new ContentTax Class
 	 * @param string $taxonomy
@@ -224,28 +224,39 @@ class ContentTax {
 	 * @param array $labels
 	 */
 
-	//  Using Constructors and Destructors
-	//  ----------------------------------
-	//	When an object is instantiated, it’s often desirable to set a few things right off the bat. To handle this,
-	//	PHP provides the magic method __construct(), which is called automatically whenever a new object is
-	//	created.
-	//	For the purpose of illustrating the concept of constructors, add a constructor to MyClass that will
-	//	output a message whenever a new instance of the class is created:
-	//  _______________________________________
-	// 	| class MyClass
-	//  | {
-	// 	|		public $prop1 = "I'm a class property!";
-	//	|
-	//  | 		public function __construct() {
-	//	| 			echo 'The class "', __CLASS__, '" was initiated!<br />';
-	//	| 		}
-	//	| }
-	//	| // Create a new object
-	//	| $obj = new MyClass;
-	//  |_______________________________________
+	/** -----------------------------------------------------------------*/
+	//                Using Constructors and Destructors
+    /** -----------------------------------------------------------------*/
+	/**------------------------------------------------------------------*/
+	// When an object is instantiated, it’s often desirable to set a few 
+	// things right off the bat. To handle this, PHP provides the magic 
+	// __construct(), method which is called automatically whenever a new
+	// object is created.
+	//
+	// For the purpose of illustrating the concept of constructors, add
+	// a constructor to MyClass that will output a message whenever a new
+	// instance of the class is created:
+	/**------------------------------------------------------------------*/
+
+	/**------------------------------------------------------------------*/
 	// In order to register_post_type('quote', $options) 
-	// we need to pass at least the custom post type name, and the options array.
+	// we need to pass at least the custom post type name,
+	// and the options array.
 	// The $options array, takes an aditional $labels array.
+	/**------------------------------------------------------------------*/
+	/**
+	 *  _________________________________________________________________
+	 * | class MyClass                                                   |
+	 * | {                                                               |
+	 * |	public $prop1 = "I'm a class property!";                     |
+	 * |    public function __construct() {                              |
+	 * |    	echo 'The class "', __CLASS__, '" was initiated!<br />'; |
+	 * |    }                                                            |
+	 * | }                                                               |
+	 * | // Create a new object                                          |
+	 * | $obj = new MyClass;                                             |
+	 * |_________________________________________________________________|
+	 */
 
 	public function __construct($taxonomy, $object_type = [], $args = [], $labels = []) {
 		// OOP allows objects to reference themselves using $this. When working within a method,
@@ -311,14 +322,15 @@ class ContentTax {
 	}	
 }
 
-// After creating the class, a new class can be instantiated and stored in a variable 
-// using the 'new' keyword:
-/**  _______________________________________*/
-// 	|
-//  | $obj = new MyClass;
-// 	|
-//  | //To see the contents of the class, use var_dump():
-// 	| var_dump($obj);
-// 	|
-/** |_______________________________________*/
-/**-----------------------------------------*/
+
+/**----------------------------------------------------------------*/
+//         Now. After creating the class, a new class can be 
+//  instantiated and stored in a variable using the 'new' keyword:
+/**----------------------------------------------------------------*/
+/** _____________________________________________________________ 
+ * | $obj = new MyClass;                                         |
+ * | //To see the contents of the class, use var_dump():         |
+ * |                                                             |
+ * | var_dump($obj);                                             |
+ * |_____________________________________________________________|
+ */
