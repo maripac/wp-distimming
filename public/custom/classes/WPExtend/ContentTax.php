@@ -29,33 +29,20 @@ namespace WPPlugins\WPExtend;
 
 /** ____________________________________________________________*/
 /** ____________________________________________________________
- * | Call the register taxonomy function 						|
- * | which is provided by Wordpress's core 					    |           
+ * | Call the register taxonomy function                        |
+ * | which is provided by Wordpress's core                      | 
  * |____________________________________________________________|
  */
 
 /** ____________________________________________________________ 
- * | add_action('init', function () {							|
- * |															|
- * |    register_taxonomy( 'languages', $object_type, $args ); 	|
- * |															|
- * | });														|
+ * | add_action('init', function () {                           |
+ * |                                                            |
+ * |    register_taxonomy( 'languages', $object_type, $args );  |
+ * |                                                            |
+ * | });                                                        |
  * |____________________________________________________________|
  */
 
-/** ________________________________________*/
-/**-------------------------------------------------------------*/
-/**             Call the register taxonomy function             */
-/**             which is provided by Wordpress's core           */
-/**  ___________________________________________________________*/
-// 	| 
-//  | add_action('init', function () {
-// 	|
-//  |   register_taxonomy( 'languages', $object_type, $args );
-//	| 
-// 	| });
-/** |___________________________________________________________*/
-/**-------------------------------------------------------------*/
 
 /**-----------------------------------------------------------------------------------------*/
 //       Register Custom Taxonomy Example of 'writer' taxonomy for a custom post type 'book'
@@ -110,9 +97,6 @@ namespace WPPlugins\WPExtend;
  *
  */
 
-
-
-
 /** How to avoid having to write all this code, */
 /** which uses the same word over and over?     */
 /** Imagine we need to create 30 different      */
@@ -132,15 +116,16 @@ namespace WPPlugins\WPExtend;
 // house doesn’t exist.
 //
 // The syntax to create a class
-/**  _______________________________________*/
-// 	|
-//  | class MyClass
-// 	| {
-//  |  	// Class properties and methods go here
-//	|
-// 	|  }
-/** |_______________________________________*/
-/**-----------------------------------------*/
+/** 
+ *  ____________________________________________
+ * |                                            |
+ * | class MyClass                              |
+ * | {                                          |
+ * | 	// Class properties and methods go here |
+ * | }                                          |
+ * |____________________________________________|
+ */
+
 //
 // An object, then, is like the actual house built according to that blueprint. The data stored in the
 // object is like the wood, wires, and concrete that compose the house: without being assembled according
