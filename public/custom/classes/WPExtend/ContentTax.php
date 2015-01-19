@@ -12,41 +12,36 @@ namespace WPPlugins\WPExtend;
 * Author URI: http://maripac.me/
 */
 
-/** ________________________________________*/
-/** _________________________________________
- * |                                         |
- * | Creating a custom Taxonomy              |
- * | Add it to the init action               |
- * |_________________________________________|
+/**-------------------------------------------------------------*/
+//           1. In order to create a custom Taxonomy
+//                  add it to the init action.
+/**-------------------------------------------------------------*/
+/** _____________________________________________________________
+ * | add_action('init', function () {                            |
+ * |                                                             |
+ * | });                                                         |
+ * |_____________________________________________________________|
  */
 
-/** _________________________________________
- * | add_action('init', function () {        |
- * |                                         |
- * | });                                     |
- * |_________________________________________|
- */
 
-/** ____________________________________________________________*/
-/** ____________________________________________________________
- * | Call the register taxonomy function                        |
- * | which is provided by Wordpress's core                      | 
- * |____________________________________________________________|
+/**-------------------------------------------------------------*/
+//          2. Call the register taxonomy function that 
+//                 is provided by Wordpress's core. 
+/**-------------------------------------------------------------*/
+/** _____________________________________________________________ 
+ * | add_action('init', function () {                            |
+ * |                                                             |
+ * |    register_taxonomy( 'languages', $object_type, $args );   |
+ * |                                                             |
+ * | });                                                         |
+ * |_____________________________________________________________|
  */
-
-/** ____________________________________________________________ 
- * | add_action('init', function () {                           |
- * |                                                            |
- * |    register_taxonomy( 'languages', $object_type, $args );  |
- * |                                                            |
- * | });                                                        |
- * |____________________________________________________________|
- */
-
 
 /**-----------------------------------------------------------------------------------------*/
-//       Register Custom Taxonomy Example of 'writer' taxonomy for a custom post type 'book'
+//  Example of Register Custom Taxonomy 'writer' for a custom post type 'book'
+//  Source URL: http://codex.wordpress.org/Function_Reference/register_taxonomy#Example
 /**-----------------------------------------------------------------------------------------*/
+//
 // 	add_action('init', function () {
 // 	$labels [
 // 		'name'                       => _x( 'Writers', 'taxonomy general name' ),
@@ -81,19 +76,28 @@ namespace WPPlugins\WPExtend;
 // });
 //
 
+/**-----------------------------------------------------------------------------------------*/
+//  Usage of Register Custom Taxonomy 
+//  Source URL: http://codex.wordpress.org/Function_Reference/register_taxonomy#Usage
+/**-----------------------------------------------------------------------------------------*/
+
+//  Use the init action to call this function. Calling it outside of an action can lead to troubles. 
+//  register_taxonomy( $taxonomy, $object_type, $args );
+
+
+//  Source File: register_taxonomy() is located in wp-includes/taxonomy.php.
+//  Source URL: https://core.trac.wordpress.org/browser/tags/4.1/src/wp-includes/taxonomy.php#L0
 /**
- *  register_taxonomy( 'post_tag', 'post', array(
- *  'hierarchical' => false,
- *  'query_var' => 'tag',
- *  'rewrite' => $rewrite['post_tag'],
- *  'public' => true,
- *  'show_ui' => true,
- *  'show_admin_column' => true,
- *  '_builtin' => true,
- *  ) );
- *  <?php register_taxonomy( $taxonomy, $object_type, $args ); ?>
- *
- *
+ * register_taxonomy( 'post_tag', 'post', array(
+ *		'hierarchical' => false,
+ *		'query_var' => 'tag',
+ *		'rewrite' => $rewrite['post_tag'],
+ *		'public' => true,
+ *		'show_ui' => true,
+ *		'show_admin_column' => true,
+ *		'_builtin' => true,
+ *	 ) 
+ * );
  *
  */
 
@@ -134,16 +138,16 @@ namespace WPPlugins\WPExtend;
 //
 // After creating the class, a new class can be instantiated and stored in a variable 
 // using the 'new' keyword:
-/**  _______________________________________*/
-// 	|
-//  | $obj = new MyClass;
-// 	|
-//  | //To see the contents of the class, use var_dump():
-// 	| var_dump($obj);
-// 	|
-/** |_______________________________________*/
-/**-----------------------------------------*/
 
+/**
+ *  _____________________________________________________
+ * |                                                     |
+ * | $obj = new MyClass;                                 |
+ * |                                                     |
+ * | //To see the contents of the class, use var_dump(): |
+ * | var_dump($obj);                                     |
+ * |_____________________________________________________|
+ */
 
 /** Defining Class Properties */
 //  To add data to a class, properties, or class-specific variables, are used. These work exactly like regular
@@ -151,66 +155,67 @@ namespace WPPlugins\WPExtend;
 //
 //	The keyword public determines the visibility of the property.
 // 	Next, the property is named using standard variable syntax, and a value is assigned (though class properties do not need an initial value).
-/**  _______________________________________*/
-// 	| class MyClass
-//  | {
-// 	|		public $prop1 = "I'm a class property!";
-//  | }
-//	| $obj = new MyClass;
-// 	| var_dump($obj);
-// 	|
-/** |_______________________________________*/
-/**-----------------------------------------*/
-//
-//	To read this property and output it to the browser, 
-//	reference the object from which to read and the property to be read: 
-/** echo $obj->prop1; */
-/**  _______________________________________*/
-// 	| class MyClass
-//  | {
-// 	|		public $prop1 = "I'm a class property!";
-//  | }
-//	| $obj = new MyClass;
-//	| echo $obj->prop1;
-/** |_______________________________________*/
-/**-----------------------------------------*/
-/**-----------------------------------------*/
 
+/**
+ *  _____________________________________________________
+ * | class MyClass                                       |
+ * | {                                                   |
+ * |	public $prop1 = "I'm a class property!";         |
+ * | }                                                   |
+ * | $obj = new MyClass;                                 |
+ * | var_dump($obj);                                     |
+ * |_____________________________________________________|
+ */
 
-/**-----------------------------------------*/
-/**-----------------------------------------*/
+// To read this property and output it to the browser, 
+// reference the object from which to read and the property to be read: 
+// echo $obj->prop1; 
+
+/**
+ *  _____________________________________________________
+ * | class MyClass                                       |
+ * | {                                                   |
+ * |	public $prop1 = "I'm a class property!";         |
+ * | }                                                   |
+ * | $obj = new MyClass;                                 |
+ * | echo $obj->prop1;                                   |
+ * |_____________________________________________________|
+ */
+
 // LET'S GO!
 // The syntax to create a class
-/**  _______________________________________*/
-// 	|
-//  | class MyClass
-// 	| {
-//  |  	// Class properties and methods go here
-// 	|  }
-/** |_______________________________________*/
-/**-----------------------------------------*/
-
 class ContentTax {
+/** 
+ *  ____________________________________________
+ * |                                            |
+ * | class MyClass                              |
+ * | {                                          |
+ * | 	// Class properties and methods go here |
+ * | }                                          |
+ * |____________________________________________|
+ */
 
 
 	// Defining Class Properties 
-	//  _______________________________________
-	// 	| class MyClass
-	//  | {
-	// 	|		public $prop1 = "I'm a class property!";
-	//  | }
-	//  |_______________________________________
-	// In order to register_post_type('quote', $options) 
-	// we need to pass at least the custom post type name, and the options array.
-	// The $options array, takes an aditional $labels array.
-	// $taxonomy, $object_type, $args
 
 	public $taxonomy;
 	public $object_type = [];
 	public $args = [];
 	public $labels = [];
-	
 
+	// In order to register_post_type('quote', $options) 
+	// we need to pass at least the custom post type name, and the options array.
+	// The $options array, takes an aditional $labels array.
+	// $taxonomy, $object_type, $args
+	/**
+	 *  _____________________________________________________
+	 * | class MyClass                                       |
+	 * | {                                                   |
+	 * |	public $prop1 = "I'm a class property!";         |
+	 * | }                                                   |                                  |
+	 * |_____________________________________________________|
+	 */
+	
 	/**
 	 * Creates a new ContentTax Class
 	 * @param string $taxonomy
