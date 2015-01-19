@@ -14,9 +14,9 @@ namespace WPPlugins\WPExtend;
 
 /** ________________________________________*/
 /** _________________________________________
- * |										 |
+ * |                                         |
  * | Creating a custom Taxonomy              |
- * | Add it to the init action 		         |
+ * | Add it to the init action               |
  * |_________________________________________|
  */
 
