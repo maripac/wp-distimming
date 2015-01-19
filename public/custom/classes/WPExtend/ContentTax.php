@@ -226,7 +226,7 @@ class ContentTax {
 
 	/** -----------------------------------------------------------------*/
 	//                Using Constructors and Destructors
-    /** -----------------------------------------------------------------*/
+	/** -----------------------------------------------------------------*/
 	/**------------------------------------------------------------------*/
 	// When an object is instantiated, it’s often desirable to set a few 
 	// things right off the bat. To handle this, PHP provides the magic 
