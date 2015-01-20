@@ -12,6 +12,31 @@ namespace WPPlugins\WPExtend;
 * Author URI: http://maripac.me/
 */
 
+
+/**-----------------------------------------------------------------------------------------*/
+//  Usage of Register Custom Taxonomy 
+//  Source URL: http://codex.wordpress.org/Function_Reference/register_taxonomy#Usage
+/**-----------------------------------------------------------------------------------------*/
+
+//  Use the init action to call this function. Calling it outside of an action can lead to troubles. 
+//  register_taxonomy( $taxonomy, $object_type, $args );
+
+
+//  Source File: register_taxonomy() is located in wp-includes/taxonomy.php.
+//  Source URL: https://core.trac.wordpress.org/browser/tags/4.1/src/wp-includes/taxonomy.php#L0
+/**
+ * register_taxonomy( 'post_tag', 'post', array(
+ *		'hierarchical' => false,
+ *		'query_var' => 'tag',
+ *		'rewrite' => $rewrite['post_tag'],
+ *		'public' => true,
+ *		'show_ui' => true,
+ *		'show_admin_column' => true,
+ *		'_builtin' => true,
+ *	 ) 
+ * );
+ */
+
 /**-------------------------------------------------------------*/
 //           1. In order to create a custom Taxonomy
 //                  add it to the init action.
@@ -38,7 +63,7 @@ namespace WPPlugins\WPExtend;
  */
 
 /**-----------------------------------------------------------------------------------------*/
-//  Example of Register Custom Taxonomy 'writer' for a custom post type 'book'
+//  3. Example of Register Custom Taxonomy 'writer' for a custom post type 'book'
 //  Source URL: http://codex.wordpress.org/Function_Reference/register_taxonomy#Example
 /**-----------------------------------------------------------------------------------------*/
 //
@@ -74,99 +99,131 @@ namespace WPPlugins\WPExtend;
 //
 // 	register_taxonomy( 'writer', 'book', $args );
 // });
-//
-
-/**-----------------------------------------------------------------------------------------*/
-//  Usage of Register Custom Taxonomy 
-//  Source URL: http://codex.wordpress.org/Function_Reference/register_taxonomy#Usage
-/**-----------------------------------------------------------------------------------------*/
-
-//  Use the init action to call this function. Calling it outside of an action can lead to troubles. 
-//  register_taxonomy( $taxonomy, $object_type, $args );
 
 
-//  Source File: register_taxonomy() is located in wp-includes/taxonomy.php.
-//  Source URL: https://core.trac.wordpress.org/browser/tags/4.1/src/wp-includes/taxonomy.php#L0
-/**
- * register_taxonomy( 'post_tag', 'post', array(
- *		'hierarchical' => false,
- *		'query_var' => 'tag',
- *		'rewrite' => $rewrite['post_tag'],
- *		'public' => true,
- *		'show_ui' => true,
- *		'show_admin_column' => true,
- *		'_builtin' => true,
- *	 ) 
- * );
- *
- */
 
 /** How to avoid having to write all this code, */
-/** which uses the same word over and over?     */
 /** Imagine we need to create 30 different      */
-/** post types for our site. It wouldn't make a */
+/** taxonomies for our site. It wouldn't make a */
 /** lot of sense to write down so much code     */ 
-/** for each of the 30 post types               */
+/** for each of the 30 taxonomies.              */
 
 /** The solution is to pass it a singular and a */
 /** plural noun so that we don't have to pass   */
 /** all the previous combinations of labels     */
 /** every content type we want to create. For   */
 /** this kind of automation, the best approach  */
-/** is to define a Content Type Class.          */
-//
-// A class, for example, is like a blueprint for a house. It defines the shape of the house on paper, with
-// relationships between the different parts of the house clearly defined and planned out, even though the
-// house doesn’t exist.
-//
-// The syntax to create a class
-/** 
- *  ____________________________________________
- * |                                            |
- * | class MyClass                              |
- * | {                                          |
- * | 	// Class properties and methods go here |
- * | }                                          |
- * |____________________________________________|
+/** is to define a Content Taxonomy Class.      */
+
+
+// Before going into class terminology we must understand the difference 
+// between instantiate and initialize Vs. define and declare.
+
+// What is a variable?
+
+/**-------------------------------------------------------------------*/
+//   (i) The syntax to declare a variable
+/**-------------------------------------------------------------------*/
+/**
+ *  __________________________________________________________________ 
+ * |                                                                  |
+ * | var $newVariable;                                                |
+ * |__________________________________________________________________|
  */
 
+/**-------------------------------------------------------------------*/
+//  (ii) The syntax to initialise a variable
+/**-------------------------------------------------------------------*/
+/**
+ *  ___________________________________________________________________
+ * |                                                                   |
+ * | $newVariable = "This is intialisation";                           |
+ * |___________________________________________________________________|
+ */
+
+/**--------------------------------------------------------------------*/
+//  (iii) Declare and initialise a variable
+/**--------------------------------------------------------------------*/
+/**
+ *  ____________________________________________________________________ 
+ * |                                                                   |
+ * | var $intialisedVar = "This var is declared and intialised";       |
+ * |___________________________________________________________________|
+ */
+
+// What is a class?
 //
-// An object, then, is like the actual house built according to that blueprint. The data stored in the
-// object is like the wood, wires, and concrete that compose the house: without being assembled according
-// to the blueprint, it’s just a pile of stuff. However, when it all comes together, it becomes an organized,
-// useful house.
+// A class, is a mould or blueprint. It works as a prototype that defines both the aspects
+// as well as the relationships between those aspects that must distinguish those items created 
+// as instances of that class. Therefore a class doesn't exist by itself as an object.
+
+/**--------------------------------------------------------*/
+//       1. The syntax to define a Class
+/**--------------------------------------------------------*/
+/** 
+ *  ________________________________________________________
+ * |                                                        |
+ * | class MyClass                                          |
+ * | {                                                      |
+ * | 	// Class properties and methods go here             |
+ * | }                                                      |
+ * |________________________________________________________|
+ */
+
+// What are properties?
 //
-// After creating the class, a new class can be instantiated and stored in a variable 
+// Class member variables are called "properties". 
+//
+// Though class properties do not need an initial value, sometimes 
+// variable after the declaration of a variable it might be initialised 
+// which means that a value can be asigned.
+
+// You may also see them referred to using different terms such as
+// "attributes" or "fields", but we will use "properties". They are
+// declared by using one of the keywords public, protected, or  
+// private, followed by a variable declaration. 
+// 
+// What is the visibility of a property?
+// Class members declared with the keyword
+// 1. "private" may only be accessed by the class that defines the member.
+// 2. "protected" may be accessed by class itself, by inherited classes and by parent classes.
+// 3. "public" may be accessed everywhere.
+
+/**--------------------------------------------------------*/
+//      2. Defining the Class Properties
+/**--------------------------------------------------------*/
+/**
+ *  ________________________________________________________
+ * | class MyClass                                          |
+ * | {                                                      |
+ * |	public $prop1 = "I'm a class property!";            |
+ * | }                                                      |
+ * |________________________________________________________|
+ */
+
+// What is an object?
+// An object is created according to a class. You instantiate an object from a class. 
+// therefore you create an instance of the class. In code: $obj = new SomeClass();   
+// After creating the class, a new object can be instantiated and stored in a variable 
 // using the 'new' keyword:
 
-/**
- *  _____________________________________________________
- * |                                                     |
- * | $obj = new MyClass;                                 |
- * |                                                     |
- * | //To see the contents of the class, use var_dump(): |
- * | var_dump($obj);                                     |
- * |_____________________________________________________|
+/** 
+ *  ________________________________________________________
+ * |                                                        |
+ * | class MyClass                                          | 
+ * | {                                                      |
+ * | 	// Class properties and methods go here             |
+ * | }                                                      |
+ * | $obj = new MyClass();                                  |
+ * | //To see the contents of the class, use var_dump():    |
+ * | var_dump($obj);                                        |
+ * |________________________________________________________|
  */
 
 /** Defining Class Properties */
-//  To add data to a class, properties, or class-specific variables, are used. These work exactly like regular
-//  variables, except they’re bound to the object and therefore can only be accessed using the object.
+// To add data to a class, properties, or class-specific variables, are used. These work exactly like regular
+// variables, except they’re bound to the object and therefore can only be accessed using the object.
 //
-//	The keyword public determines the visibility of the property.
-// 	Next, the property is named using standard variable syntax, and a value is assigned (though class properties do not need an initial value).
-
-/**
- *  _____________________________________________________
- * | class MyClass                                       |
- * | {                                                   |
- * |	public $prop1 = "I'm a class property!";         |
- * | }                                                   |
- * | $obj = new MyClass;                                 |
- * | var_dump($obj);                                     |
- * |_____________________________________________________|
- */
-
 // To read this property and output it to the browser, 
 // reference the object from which to read and the property to be read: 
 // echo $obj->prop1; 
