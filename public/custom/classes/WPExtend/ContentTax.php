@@ -259,9 +259,10 @@ class ContentTax {
 	public $args = [];
 	public $labels = [];
 
-	// In order to register_post_type('quote', $options) 
-	// we need to pass at least the custom post type name, and the options array.
-	// The $options array, takes an aditional $labels array.
+	// In order to register_taxonomy('languages', $object_type, $args); 
+	// we need to pass at least the taxonomy name, an array containing  
+	// the post types that the taxonomy will support and the $args array.
+	// The $args array, takes an aditional $labels array.
 	// $taxonomy, $object_type, $args
 	/**
 	 *  _____________________________________________________
@@ -294,12 +295,6 @@ class ContentTax {
 	// instance of the class is created:
 	/**------------------------------------------------------------------*/
 
-	/**------------------------------------------------------------------*/
-	// In order to register_post_type('quote', $options) 
-	// we need to pass at least the custom post type name,
-	// and the options array.
-	// The $options array, takes an aditional $labels array.
-	/**------------------------------------------------------------------*/
 	/**
 	 *  _________________________________________________________________
 	 * | class MyClass                                                   |
@@ -358,25 +353,25 @@ class ContentTax {
 		register_taxonomy($this->taxonomy, $this->object_type, $this->args);
 	}
 	public function default_labels() {
-		return [
+	return [
 
-			'name'                   => _x( $this->labels['plural_name'], 'taxonomy general name' ),
-			'singular_name'          => _x( $this->labels['singular_name'], 'taxonomy singular name' ),
-			'search_items'           => __( 'Search ' . $this->labels['plural_name'] ),
-			'popular_items'          => __( 'Popular ' . $this->labels['plural_name'] ),
-			'all_items'              => __( 'All ' . $this->labels['plural_name'] ),
-			'parent_item'            => null,
-			'parent_item_colon'      => null,
-			'edit_item'              => __( 'Edit ' . $this->labels['singular_name'] ),
-			'update_item'            => __( 'Update ' . $this->labels['singular_name'] ),
-			'add_new_item'           => __( 'Add New ' . $this->labels['singular_name'] ),
-			'new_item_name'          => __( 'New ' . $this->labels['singular_name'] ),
-			'separate_items_with_commas' => __( 'Separate ' . strtolower($this->labels['plural_name']) . ' commas' ),
-			'add_or_remove_items'        => __( 'Add or remove ' . $this->labels['plural_name'] ),
-			'choose_from_most_used'      => __( 'Choose from the most used ' . strtolower($this->labels['plural_name']) ),
-			'not_found'                  => __( 'No ' . strtolower($this->labels['plural_name']) . ' found' ),
-			'menu_name'                  => __( $this->labels['plural_name'] )
-		];
+		'name'                   => _x( $this->labels['plural_name'], 'taxonomy general name' ),
+		'singular_name'          => _x( $this->labels['singular_name'], 'taxonomy singular name' ),
+		'search_items'           => __( 'Search ' . $this->labels['plural_name'] ),
+		'popular_items'          => __( 'Popular ' . $this->labels['plural_name'] ),
+		'all_items'              => __( 'All ' . $this->labels['plural_name'] ),
+		'parent_item'            => null,
+		'parent_item_colon'      => null,
+		'edit_item'              => __( 'Edit ' . $this->labels['singular_name'] ),
+		'update_item'            => __( 'Update ' . $this->labels['singular_name'] ),
+		'add_new_item'           => __( 'Add New ' . $this->labels['singular_name'] ),
+		'new_item_name'          => __( 'New ' . $this->labels['singular_name'] ),
+		'separate_items_with_commas' => __( 'Separate ' . strtolower($this->labels['plural_name']) . ' commas' ),
+		'add_or_remove_items'        => __( 'Add or remove ' . $this->labels['plural_name'] ),
+		'choose_from_most_used'      => __( 'Choose from the most used ' . strtolower($this->labels['plural_name']) ),
+		'not_found'                  => __( 'No ' . strtolower($this->labels['plural_name']) . ' found' ),
+		'menu_name'                  => __( $this->labels['plural_name'] )
+	];
 	}	
 }
 
@@ -385,10 +380,33 @@ class ContentTax {
 //         Now. After creating the class, a new class can be 
 //  instantiated and stored in a variable using the 'new' keyword:
 /**----------------------------------------------------------------*/
-/** _____________________________________________________________ 
- * | $obj = new MyClass;                                         |
- * | //To see the contents of the class, use var_dump():         |
- * |                                                             |
- * | var_dump($obj);                                             |
- * |_____________________________________________________________|
+/**
+ *  _________________________________________________________________
+ * | class MyClass                                                   |
+ * | {                                                               |
+ * |    public $prop1 = "I'm a class property!";                     |
+ * | }                                                               |
+ * | $obj = new MyClass;                                             |
+ * |_________________________________________________________________|
+ */
+
+/**----------------------------------------------------------------*/
+// class-specific variables, work exactly like regular variables,  
+// except they’re bound to the object and therefore can only be  
+// accessed using the object. To read this property and output 
+// it to the browser, reference the object from which to read   
+// the property:
+//
+// echo $obj->prop1; 
+/**----------------------------------------------------------------*/
+
+/**
+ *  ________________________________________________________________
+ * | class MyClass                                                  |
+ * | {                                                              |
+ * |	public $prop1 = "I'm a class property!";                    |
+ * | }                                                              |
+ * | $obj = new MyClass;                                            |
+ * | echo $obj->prop1;                                              |
+ * |________________________________________________________________|
  */
