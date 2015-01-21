@@ -21,23 +21,26 @@
 *  The controller can implement PHP’s __autoload() function to dynamically pull in only the classes it
 *  needs as they are called, rather than including all 150 in the controller file just in case or coming up with
 *  some clever way of including the files in your own code:
+*
+* ___________________________________________________________________________________
+* |--------------------------------------------------------------------------------||
+* | PHP’s __autoload() function to dynamically pull in only the classes being used ||
+* |________________________________________________________________________________||
+* |																				   ||
+* | function __autoload($class_name)                   						       ||
+* | {																			   ||
+* | include_once 'inc/class.' . $class_name . '.inc.php'; 						   ||
+* | }																			   ||
+* |																				   ||
+* |________________________________________________________________________________||
+* -----------------------------------------------------------------------------------
 */
 
-/**___________________________________________________________________________________*/
-/** |--------------------------------------------------------------------------------|*/
-/** | PHP’s __autoload() function to dynamically pull in only the classes being used |*/
-/** |________________________________________________________________________________|*/
-// 	|																				 ||
-// 	| function __autoload($class_name)                  						     ||
-//  | {																				 ||
-// 	| include_once 'inc/class.' . $class_name . '.inc.php'; 						 ||
-//  | }																				 ||
-//	|																				 ||
-/** |________________________________________________________________________________|*/
-/**-----------------------------------------------------------------------------------*/
 
-
+spl_autoload_register(function ($class) {
 /**
+ * If the autoloader gets a Namespaced ClassName it will look something like this "\\Namespace\\Othernamespace\\ClassName" 
+ *
  * Namespacing to the rescue! You can declare the same 
  * function, class, interface and constant definitions in
  * separate namespaces without receiving fatal errors. 
@@ -45,25 +48,22 @@
  * hierarchically labeled code block holding regular 
  * PHP code.
  *
- * If the autoloader gets a Namespaced ClassName it will 
- * look something like this
- * "\\Namespace\\Othernamespace\\ClassName"
+ * 
  * We have to break the string into these escaped backslashes
  * Then look for the file in folders according to their 
  * namespaces
  *
- * $segments will store the pieces of our Namespace ClassName
+ * @var array $segments will store the pieces of our Namespace ClassName
  * 
  */
-
-
-spl_autoload_register(function ($class) {
 
 	$segments = array_filter(explode("\\", $class));
 	
 	$first = array_shift($segments);
 
 	/**
+	 * Identify which classes must be searched for running object methods by the namespace WPPlugins 
+	 *
 	 * Since every class we are going to
 	 * call that's in this directory begins
 	 * with the namespace WPPlugins. 

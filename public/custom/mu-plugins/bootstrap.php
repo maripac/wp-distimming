@@ -1,11 +1,13 @@
 <?php
  /**
  *  Plugin Name: App Bootstraping 
- *  Description: This file instantiates two new objects whose properties and methods are defined in the class ContentType.
+ *  Description: This file instantiates two new objects whose properties and methods are defined in the class ContentType and ContentTax. Actions are the hooks that the WordPress core launches at specific points during execution, or when specific events occur. Plugins can specify that one or more of its PHP functions are executed at these points, using the Action API.
  *  Author: Maripac
  *  Version: 1.0
  *  
  */
+
+
 
 add_action('plugins_loaded', function () {
 	$quotes = new WPPlugins\WPExtend\ContentType('quotes', [
@@ -16,27 +18,14 @@ add_action('plugins_loaded', function () {
     ]);
 
 	$snippets = new WPPlugins\WPExtend\ContentType('snippets', [
-	    'supports' => array('editor', 'title', 'custom-fields', 'author', 'thumbnail'),
-	    'taxonomies' => array('languages')
+	    'supports' => ['editor', 'title', 'custom-fields', 'author', 'thumbnail'],
+	    'taxonomies' => ['languages']
 	], [
 	    'singular_name' => "Snippet"
     ]);
 
-	$pet_post_lang = new WPPlugins\WPExtend\ContentTax('languages', ['post', 'snippets'], [], [
+	$languages = new WPPlugins\WPExtend\ContentTax('languages', ['post', 'snippets'], [], [
 	    'singular_name' => "Language",
 	    'plural_name' => "Languages"
     ]);
 });
-
-// After creating the class, a new class can be instantiated and stored in a variable 
-// using the 'new' keyword:
-/**  _______________________________________*/
-// 	|
-//  | $obj = new MyClass;
-// 	|
-//  | //To see the contents of the class, use var_dump():
-// 	| var_dump($obj);
-// 	|
-/** |_______________________________________*/
-/**-----------------------------------------*/
-/** $quicknotes = new ContentType('quicknote', [], ['plural_name' => 'Quick Notes', 'singular_name' => 'Quick Note']); */
